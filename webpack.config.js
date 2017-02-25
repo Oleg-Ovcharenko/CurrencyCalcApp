@@ -3,19 +3,17 @@ var webpack = require('webpack');
 module.exports = {
     entry: "./app/main.js",
     output: {
-        path: __dirname+'/dist/js/',
+        path: __dirname + '/dist/js/',
         publicPath: "js/",
         filename: "bundle.js"
     },
+
     module: {
         loaders: [
             {
                 test: /\.js$/,
-                loader: "babel-loader",
-                exclude: [/node_modules/, /dist/],
-                query: {
-                    presets: ['es2015']
-                }
+                loaders: ['react-hot-loader', 'babel-loader?presets[]=es2015,presets[]=react,plugins[]=transform-runtime'],
+                exclude: [/node_modules/, /dist/]
             }, {
                 test: /\.css$/,
                 loader: "style-loader!css-loader!autoprefixer-loader",
@@ -38,7 +36,7 @@ module.exports = {
                 loader: "url-loader?limit=26000&mimetype=image/svg+xml"
             }, {
                 test: /\.jsx$/,
-                loader: "react-hot-loader!babel-loader",
+                loaders: ['react-hot-loader', 'babel-loader?presets[]=es2015,presets[]=react,plugins[]=transform-runtime'],
                 exclude: [/node_modules/, /dist/]
             }, {
                 test: /\.json$/,
