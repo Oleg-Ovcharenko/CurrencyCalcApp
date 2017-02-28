@@ -1,0 +1,24 @@
+.currency_calc_control {
+    &__select:focus{
+        border: 1px solid rgba(178,194,219,1);
+        box-shadow: 0px 0px 3px 1px rgba(178,194,219,.9);
+        outline: none;
+    }
+    &__output_text:disabled {
+        background-color: #fff;
+    }
+    &__select {
+        padding: 7px;
+        border-radius: 3px;
+        border: 1px solid #D0D3D8;
+        color: rgba(0,0,0,.87);
+        font-size: 1.1em;
+        margin: 0 10px;
+        transition: .5s;
+    } 
+    &__swap {
+        width: 35px;
+        height: 35px;
+        border: none;
+    }
+}
