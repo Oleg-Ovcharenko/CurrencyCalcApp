@@ -9490,22 +9490,22 @@ var CurrencyCalcChoose = _react2.default.createClass({
                 { className: 'currency_calc_control__select', name: 'select1' },
                 _react2.default.createElement(
                     'option',
-                    { selected: 'selected' },
+                    { defaultValue: 'selected' },
                     'UAH'
                 ),
                 _react2.default.createElement(
                     'option',
-                    null,
+                    { vlaue: '1' },
                     'USD'
                 ),
                 _react2.default.createElement(
                     'option',
-                    null,
+                    { vlaue: '2' },
                     'EUR'
                 ),
                 _react2.default.createElement(
                     'option',
-                    null,
+                    { vlaue: '3' },
                     'RUR'
                 )
             ),
@@ -9519,22 +9519,22 @@ var CurrencyCalcChoose = _react2.default.createClass({
                 { className: 'currency_calc_control__select', name: 'select2' },
                 _react2.default.createElement(
                     'option',
-                    { selected: 'selected' },
+                    { defaultValue: 'selected' },
                     'UAH'
                 ),
                 _react2.default.createElement(
                     'option',
-                    null,
+                    { vlaue: '4' },
                     'USD'
                 ),
                 _react2.default.createElement(
                     'option',
-                    null,
+                    { vlaue: '5' },
                     'EUR'
                 ),
                 _react2.default.createElement(
                     'option',
-                    null,
+                    { vlaue: '6' },
                     'RUR'
                 )
             )
@@ -9877,25 +9877,24 @@ __webpack_require__(188);
 var CurrencyCalcApp = _react2.default.createClass({
     displayName: 'CurrencyCalcApp',
 
-    getExchangeRate: function getExchangeRate() {
+    getInitialState: function getInitialState() {
+        return {
+            currencies: 0
+        };
+    },
+
+    componentDidMount: function componentDidMount() {
         _jquery2.default.ajax({
             url: 'https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=5',
-            type: 'POST',
+            type: 'GET',
             success: function success(response) {
-                var currents = JSON.parse(response);
-                return currents;
+                this.setState({ currencies: response });
             }
         });
     },
 
-    getInitialState: function getInitialState() {
-        return {
-            currents: getExchangeRate
-        };
-    },
-
     render: function render() {
-        console.log(this.state.notes);
+        console.log(this.state.currencies);
         return _react2.default.createElement(
             'div',
             { className: 'currency_calc' },
@@ -9910,7 +9909,7 @@ var CurrencyCalcApp = _react2.default.createClass({
                 '\u041D\u0430\u043B\u0438\u0447\u043D\u044B\u0439 \u043A\u0443\u0440\u0441 \u041F\u0440\u0438\u0432\u0430\u0442\u0411\u0430\u043D\u043A\u0430 (\u0432 \u043E\u0442\u0434\u0435\u043B\u0435\u043D\u0438\u044F\u0445)'
             ),
             _react2.default.createElement(_CurrencyCalcControl.CurrencyCalcControl, null),
-            _react2.default.createElement(_CurrencyCalcFooter.CurrencyCalcFooter, null)
+            _react2.default.createElement(_CurrencyCalcFooter.CurrencyCalcFooter, { currencies: 'sdf' })
         );
     }
 });
@@ -30418,47 +30417,36 @@ __webpack_require__(191);
 var CurrencyCalcFooter = _react2.default.createClass({
     displayName: 'CurrencyCalcFooter',
 
+    getDateNow: function getDateNow() {
+        var date = new Date();
+        var day = date.getDate();
+        var month = date.getMonth() + 1;
+        var year = date.getFullYear();
+        return day + '.' + month + '.' + year;
+    },
+
+    getInitialState: function getInitialState() {
+        return {
+            date: '0.0.0'
+            //currencies: this.props.currencies
+        };
+    },
+
+    componentWillMount: function componentWillMount() {
+        this.setState({ date: this.getDateNow() });
+    },
+
     render: function render() {
+        //console.log(this.props.currencies);
         return _react2.default.createElement(
             'div',
             { className: 'currency_calc_footer' },
             _react2.default.createElement(
                 'p',
                 { className: 'currency_calc_footer__inform' },
-                '\u041D\u0430 28.10.11 \u043A\u0443\u0440\u0441 ',
-                _react2.default.createElement(
-                    'span',
-                    null,
-                    _react2.default.createElement(
-                        'b',
-                        null,
-                        'USD: '
-                    ),
-                    '25'
-                ),
-                ' ',
-                _react2.default.createElement(
-                    'span',
-                    null,
-                    _react2.default.createElement(
-                        'b',
-                        null,
-                        'EUR: '
-                    ),
-                    '31'
-                ),
-                ' ',
-                _react2.default.createElement(
-                    'span',
-                    null,
-                    _react2.default.createElement(
-                        'b',
-                        null,
-                        'RUB: '
-                    ),
-                    '0.4'
-                ),
-                ' '
+                '\u041D\u0430 ',
+                this.state.date,
+                ' \u043A\u0443\u0440\u0441'
             )
         );
     }
