@@ -26,4 +26,3 @@ const CurrencyCalcChoose = React.createClass({
 });
 
 export default CurrencyCalcChoose;
-

@@ -22,13 +22,12 @@ let CurrencyCalcFooter = React.createClass({
     },
 
     render: function() {
-        console.log(this.props.currencies);
         return (
             <div className="currency_calc_footer">
                 <p className="currency_calc_footer__inform">Покупка на : { this.state.date }
                     {
                         this.props.currencies.map(function(el){
-                            return (<span key={el.ccy}><b> {el.ccy}: </b> {el.buy} </span>);
+                            return (<span key={el.ccy}><b> {el.ccy}: </b> {parseFloat(el.buy).toFixed(2)} </span>);
                         })
                     }
                 </p>

@@ -6,14 +6,13 @@ import CurrencyCalcFooter  from './CurrencyCalcFooter.jsx';
 
 require('./CurrencyCalcApp.scss');
 
-const CurrencyCalcApp = React.createClass({
-    getInitialState: function() {
-        return {
-            currencies: []
-        };
-    },
+class CurrencyCalcApp extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = { currencies: [] };
+    }
 
-    componentDidMount: function() {
+    componentDidMount() {
         $.ajax({
             url: 'https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=5',
             type:'GET',
@@ -24,19 +23,18 @@ const CurrencyCalcApp = React.createClass({
                 alert('Данные не получены');
             }.bind(this)
         });
-    },
+    }
 
-    render: function() {
+    render() {
         return (
             <div className="currency_calc">
                 <h1 className="currency_calc__header">Конвертер валют</h1>
                 <p className="currency_calc__descr">Наличный курс ПриватБанка (в отделениях)</p>
-                <CurrencyCalcControl/>
+                <CurrencyCalcControl currencies={this.state.currencies}/>
                 <CurrencyCalcFooter currencies={this.state.currencies}/>
             </div>                 
         );
     }
-});
+};
 
 export default CurrencyCalcApp;
-
