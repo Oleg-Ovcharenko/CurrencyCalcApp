@@ -1,12 +1,12 @@
 import React from 'react';
 import $ from 'jquery';
-import { CurrencyCalcControl }  from './CurrencyCalcControl.jsx';
-import { CurrencyCalcChoose }  from './CurrencyCalcChoose.jsx';
-import { CurrencyCalcFooter }  from './CurrencyCalcFooter.jsx';
+import CurrencyCalcControl from './CurrencyCalcControl.jsx';
+import CurrencyCalcChoose  from './CurrencyCalcChoose.jsx';
+import CurrencyCalcFooter  from './CurrencyCalcFooter.jsx';
 
 require('./CurrencyCalcApp.scss');
 
-let CurrencyCalcApp = React.createClass({
+const CurrencyCalcApp = React.createClass({
     getInitialState: function() {
         return {
             currencies: []
@@ -38,5 +38,5 @@ let CurrencyCalcApp = React.createClass({
     }
 });
 
-export { CurrencyCalcApp };
+export default CurrencyCalcApp;
 

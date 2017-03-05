@@ -1,5 +1,5 @@
 import React from 'react';
-import { CurrencyCalcChoose }  from './CurrencyCalcChoose.jsx';
+import CurrencyCalcChoose from './CurrencyCalcChoose.jsx';
 
 require('./CurrencyCalcControl.scss');
 
@@ -24,5 +24,5 @@ let CurrencyCalcControl = React.createClass({
     }
 });
 
-export { CurrencyCalcControl };
+export default CurrencyCalcControl;
 

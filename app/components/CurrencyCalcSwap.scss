@@ -1,0 +1,15 @@
+.currency_calc_control {
+    &__swap {
+        width: 35px;
+        height: 35px;
+        border: none;
+        background: url('next.svg') no-repeat;
+        background-size: 25px 25px;
+        background-position: center center;
+        transition: .3s;
+        &:hover {
+            cursor: pointer;
+            opacity: .7;
+        }
+    }
+}

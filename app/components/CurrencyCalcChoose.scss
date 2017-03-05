@@ -15,10 +15,8 @@
         font-size: 1.1em;
         margin: 0 10px;
         transition: .5s;
+        &:hover {
+            cursor: pointer;
+        }
     } 
-    &__swap {
-        width: 35px;
-        height: 35px;
-        border: none;
-    }
 }

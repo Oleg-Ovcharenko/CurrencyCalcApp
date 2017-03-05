@@ -1,8 +1,9 @@
 import React from 'react';
+import CurrencyCalcSwap  from './CurrencyCalcSwap.jsx';
 
 require('./CurrencyCalcChoose.scss');
 
-let CurrencyCalcChoose = React.createClass({
+const CurrencyCalcChoose = React.createClass({
     render: function() {
         return (
         <div className="currency_calc_control__choose">
@@ -12,7 +13,7 @@ let CurrencyCalcChoose = React.createClass({
                 <option vlaue="2">EUR</option>
                 <option vlaue="3">RUR</option>
             </select>
-            <button className="currency_calc_control__swap">&nbsp;</button>
+            <CurrencyCalcSwap/>
             <select className="currency_calc_control__select" name="select2">
                 <option defaultValue="selected">UAH</option>
                 <option vlaue="4">USD</option>
@@ -24,5 +25,5 @@ let CurrencyCalcChoose = React.createClass({
     }
 });
 
-export { CurrencyCalcChoose };
+export default CurrencyCalcChoose;
 

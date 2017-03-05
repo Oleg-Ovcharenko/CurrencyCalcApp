@@ -14,7 +14,6 @@ let CurrencyCalcFooter = React.createClass({
     getInitialState: function() {
         return {
             date: '0.0.0'
-            //currencies: this.props.currencies
         };
     },
 
@@ -38,4 +37,4 @@ let CurrencyCalcFooter = React.createClass({
     }
 });
 
-export { CurrencyCalcFooter };
+export default CurrencyCalcFooter;
