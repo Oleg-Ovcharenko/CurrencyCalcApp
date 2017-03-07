@@ -1,5 +1,5 @@
 import React from 'react';
-import $ from 'jquery';
+//import $ from 'jquery';
 import CurrencyCalcControl from './CurrencyCalcControl.jsx';
 import CurrencyCalcChoose  from './CurrencyCalcChoose.jsx';
 import CurrencyCalcFooter  from './CurrencyCalcFooter.jsx';
@@ -9,20 +9,25 @@ require('./CurrencyCalcApp.scss');
 class CurrencyCalcApp extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { currencies: [] };
+        this.state = { 
+            currencies: [],
+         };
     }
 
     componentDidMount() {
-        $.ajax({
-            url: 'https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=5',
-            type:'GET',
-            success: function(response) {
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', 'https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=5');
+        xhr.onload = function() {
+            if (xhr.status === 200) {
+                var response = JSON.parse(xhr.responseText);
+                response.push({ ccy:"UAH", base_ccy:"UAH", buy:"1", sale:"1" });
                 this.setState({ currencies: response });
-            }.bind(this),
-            error: function(){
-                alert('Данные не получены');
-            }.bind(this)
-        });
+            }
+            else {
+                alert('Request failed.  Returned status of ' + xhr.status);
+            }
+        }.bind(this);
+        xhr.send();
     }
 
     render() {

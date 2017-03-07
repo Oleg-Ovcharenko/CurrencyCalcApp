@@ -27,7 +27,11 @@ let CurrencyCalcFooter = React.createClass({
                 <p className="currency_calc_footer__inform">Покупка на : { this.state.date }
                     {
                         this.props.currencies.map(function(el){
-                            return (<span key={el.ccy}><b> {el.ccy}: </b> {parseFloat(el.buy).toFixed(2)} </span>);
+                            if(el.ccy == "UAH") {
+                                return;
+                            } else {
+                                return (<span key={el.ccy}><b> {el.ccy}: </b> {parseFloat(el.buy).toFixed(2)} </span>);
+                            }
                         })
                     }
                 </p>

@@ -15,9 +15,10 @@ class CurrencyCalcControl extends React.Component{
             select2: 0
         };
 
-        this.handleInput = this.handleInput.bind(this);
-        this.select1     = this.select1.bind(this);
-        this.select2     = this.select2.bind(this);
+        this.handleInput   = this.handleInput.bind(this);
+        //this.defaultParams = this.defaultParams.bind(this);
+        this.select1       = this.select1.bind(this);
+        this.select2       = this.select2.bind(this);
     }
 
     handleInput (event) {
@@ -43,12 +44,27 @@ class CurrencyCalcControl extends React.Component{
     }
 
     select2 (event) {
-        let newCurrency = (this.state.inpCurrency * this.state.select1) / event.target.value;
+        let newCurrency = (this.state.inpCurrency * this.state.select1) / event.target.value; 
         this.setState({select2: parseFloat(event.target.value)});
-        this.setState({outCurrency: newCurrency.toFixed(2) });
+        this.setState({outCurrency: newCurrency.toFixed(2) }); 
+    }
+
+    componentWillReceiveProps(nextProps) {
+        nextProps.currencies.map(function def(el){
+            if(el.ccy == "UAH") {
+                this.setState({select1: el.buy });
+            }
+
+            if(el.ccy == "USD") {
+                this.setState({select2: el.buy });
+            }
+        }.bind(this))
     }
 
     render () {
+        let selc1 = this.state.select1;
+        let selc2 = this.state.select2;
+
         return (
             <div className="currency_calc_control">
                 <div className="currency_calc_control__input">
@@ -57,19 +73,17 @@ class CurrencyCalcControl extends React.Component{
                 </div>
                 <div className="currency_calc_control__choose">
                     <select className="currency_calc_control__select" name="select1" onChange={this.select1} value={this.state.value}>
-                        <option key='UAH' value={1}>UAH</option>
                         {
                             this.props.currencies.map(function name(el) {
-                                return (<option key={el.ccy} value={el.buy}>{el.ccy}</option>);
+                                return (<option key={el.ccy} value={el.buy} selected={selc1 == el.buy}>{el.ccy}</option>);
                             })
                         }
                     </select>
                     <button className="currency_calc_control__swap">&nbsp;</button>
                     <select className="currency_calc_control__select" name="select2" onChange={this.select2} value={this.state.value}>
-                        <option key='UAH' value={1}>UAH</option>
                         {
                             this.props.currencies.map(function name(el) {
-                                return (<option key={el.ccy} value={el.buy}>{el.ccy}</option>);
+                                return (<option key={el.ccy} value={el.buy} selected={selc2 == el.buy}>{el.ccy}</option>);
                             })
                         }
                     </select> 
@@ -84,4 +98,3 @@ class CurrencyCalcControl extends React.Component{
 };
 
 export default CurrencyCalcControl;
-
