@@ -1,7 +1,6 @@
 import React from 'react';
-//import $ from 'jquery';
+
 import CurrencyCalcControl from './CurrencyCalcControl.jsx';
-import CurrencyCalcChoose  from './CurrencyCalcChoose.jsx';
 import CurrencyCalcFooter  from './CurrencyCalcFooter.jsx';
 
 require('./CurrencyCalcApp.scss');

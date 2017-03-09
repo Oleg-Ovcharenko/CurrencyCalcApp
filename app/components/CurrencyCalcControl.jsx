@@ -1,9 +1,8 @@
 import React from 'react';
-//import CurrencyCalcChoose from './CurrencyCalcChoose.jsx';
+
+import CurrencyCalcOutput from './CurrencyCalcOutput.jsx';
 
 require('./CurrencyCalcControl.scss');
-require('./CurrencyCalcChoose.scss');
-require('./CurrencyCalcSwap.scss');
 
 class CurrencyCalcControl extends React.Component{
     constructor(props) {
@@ -16,7 +15,6 @@ class CurrencyCalcControl extends React.Component{
         };
 
         this.handleInput   = this.handleInput.bind(this);
-        //this.defaultParams = this.defaultParams.bind(this);
         this.select1       = this.select1.bind(this);
         this.select2       = this.select2.bind(this);
     }
@@ -83,15 +81,12 @@ class CurrencyCalcControl extends React.Component{
                     <select className="currency_calc_control__select" name="select2" onChange={this.select2} value={this.state.value}>
                         {
                             this.props.currencies.map(function name(el) {
-                                return (<option key={el.ccy} value={el.buy} selected={selc2 == el.buy}>{el.ccy}</option>);
+                                return (<option key={el.ccy} value={el.buy} selected={selc2 == el.buy}>{el.ccy}</option>); 
                             })
                         }
                     </select> 
                 </div>
-                <div className="currency_calc_control__output">
-                    <label htmlFor="currency_calc__output_text" className="currency_calc_control__output_label">Результат</label><br/>
-                    <input id="currency_calc__output_text" className="currency_calc_control__output_text" type="text" value={this.state.outCurrency} disabled/>
-                </div> 
+                <CurrencyCalcOutput outCurrency={this.state.outCurrency}/>
             </div>                 
         );
     }
