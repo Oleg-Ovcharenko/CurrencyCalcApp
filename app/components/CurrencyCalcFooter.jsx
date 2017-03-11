@@ -2,26 +2,27 @@ import React from 'react';
 
 require('./CurrencyCalcFooter.scss');  
 
-let CurrencyCalcFooter = React.createClass({
-    getDateNow: function() {
-        var date = new Date();
-        var day = date.getDate();
-        var month = date.getMonth() + 1;
-        var year = date.getFullYear();
-        return day+'.'+month+'.'+year;
-    },
-
-    getInitialState: function() {
-        return {
+export default class CurrencyCalcFooter extends React.Component{
+    constructor(props) {
+        super(props);
+        this.state = {
             date: '0.0.0'
         };
-    },
+    }
 
-    componentWillMount: function() {
+    getDateNow() {
+        let date = new Date();
+        let day = date.getDate();
+        let month = date.getMonth() + 1;
+        let year = date.getFullYear();
+        return day+'.'+month+'.'+year;
+    }
+
+    componentWillMount() {
         this.setState({ date: this.getDateNow() });
-    },
+    }
 
-    render: function() {
+    render() {
         return (
             <div className="currency_calc_footer">
                 <p className="currency_calc_footer__inform">Покупка на : { this.state.date }
@@ -38,6 +39,4 @@ let CurrencyCalcFooter = React.createClass({
             </div>                          
         );
     }
-});
-
-export default CurrencyCalcFooter;
+};

@@ -5,7 +5,7 @@ import CurrencyCalcFooter  from './CurrencyCalcFooter.jsx';
 
 require('./CurrencyCalcApp.scss');
 
-class CurrencyCalcApp extends React.Component {
+export default class CurrencyCalcApp extends React.Component {
     constructor(props) {
         super(props);
         this.state = { 
@@ -14,11 +14,11 @@ class CurrencyCalcApp extends React.Component {
     }
 
     componentDidMount() {
-        var xhr = new XMLHttpRequest();
+        let xhr = new XMLHttpRequest();
         xhr.open('GET', 'https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=5');
         xhr.onload = function() {
             if (xhr.status === 200) {
-                var response = JSON.parse(xhr.responseText);
+                let response = JSON.parse(xhr.responseText);
                 response.push({ ccy:"UAH", base_ccy:"UAH", buy:"1", sale:"1" });
                 this.setState({ currencies: response });
             }
@@ -40,5 +40,3 @@ class CurrencyCalcApp extends React.Component {
         );
     }
 };
-
-export default CurrencyCalcApp;

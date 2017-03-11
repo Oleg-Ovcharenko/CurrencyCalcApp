@@ -4,7 +4,7 @@ import CurrencyCalcOutput from './CurrencyCalcOutput.jsx';
 
 require('./CurrencyCalcControl.scss');
 
-class CurrencyCalcControl extends React.Component{
+export default class CurrencyCalcControl extends React.Component{
     constructor(props) {
         super(props);
         this.state = {
@@ -77,7 +77,7 @@ class CurrencyCalcControl extends React.Component{
                             })
                         }
                     </select>
-                    <button className="currency_calc_control__swap">&nbsp;</button>
+                    <span className="currency_calc_control__swap">&nbsp;</span>
                     <select className="currency_calc_control__select" name="select2" onChange={this.select2} value={this.state.value}>
                         {
                             this.props.currencies.map(function name(el) {
@@ -91,5 +91,3 @@ class CurrencyCalcControl extends React.Component{
         );
     }
 };
-
-export default CurrencyCalcControl;

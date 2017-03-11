@@ -2,12 +2,12 @@ import React from 'react';
 
 require('./CurrencyCalcOutput.scss');
 
-class CurrencyCalcOutput extends React.Component{
+export default class CurrencyCalcOutput extends React.Component{
     constructor(props) {
         super(props);
     }
     
-    render () {
+    render() {
         return(
             <div className="currency_calc_control__output">
                 <label htmlFor="currency_calc__output_text" className="currency_calc_control__output_label">Результат</label><br/>
@@ -16,5 +16,3 @@ class CurrencyCalcOutput extends React.Component{
         );
     }
 };
-
-export default CurrencyCalcOutput;
